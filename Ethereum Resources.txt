@@ -48,7 +48,9 @@ PBFT
 https://en.wikipedia.org/wiki/Byzantine_fault_tolerance
 
 
-
+Problems: 
+Scaling
+http://www.coindesk.com/information/will-ethereum-scale/
 
 
 
