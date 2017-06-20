@@ -1,0 +1,7 @@
+#### Ethereum project  ####
+
+Install Truffle globally (required):
+npm install -g truffle
+
+
+

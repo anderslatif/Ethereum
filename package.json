@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "description": "Ethereum Dapp",
+  "author": "Anders",
+  "license": "ISC",
+  "dependencies": {
+    "truffle": "^3.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anderslatif/Ethereum"
+  },
+  "scripts": {
+    "compile": "truffle compile",
+    "deploy-to-network": "truffle migrate",
+    "test": "truffle test"
+  },
+  "devDependencies": {}
+}
