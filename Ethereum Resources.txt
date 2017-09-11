@@ -10,47 +10,14 @@ https://www.ethereum.org/dao
 https://github.com/paritytech/parity/wiki/Tutorial-Part-I
 
 
-The blockchain will be human history. What is left of it. 
-
-The world will be digital. The part of it that will matter. 
 
 
 
 
 
 
-http://truffleframework.com/docs/getting_started/contact
-
-https://karl.tech/5-essential-ethereum-dapp-tools/
 
 
-
-debates in the community:
-public vs private (banks, taxes etc)
-immutability (EU law about data and the right to be forgotten)
-
-
-Diagram:
-On platform assets - cryptocurrency
-off platform assets - property in the real world
-smart contracts - conditional transaction -> if something happens then do something -> insurance/ 										supply chains
-		goes from state to state 
-		
-Block chain abstract model
-https://www.slideshare.net/AndersLatif/clipboards/bob?rftp=success_toast
-
-Bitcoin is stateless
-you prove you have the amount of coin by reffering to previous transactions
-the wallet is the DB
-
-
-PBFT
-https://en.wikipedia.org/wiki/Byzantine_fault_tolerance
-
-
-Problems: 
-Scaling
-http://www.coindesk.com/information/will-ethereum-scale/
 
 
 
