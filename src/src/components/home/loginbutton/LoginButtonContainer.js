@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import LoginButton from './LoginButton'
-import { loginUser } from './LoginButtonActions'
+import { loginUser } from '../../../actions/LoginButtonActions'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -14,11 +14,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(loginUser())
     }
   }
-}
+};
 
 const LoginButtonContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginButton)
+)(LoginButton);
 
 export default LoginButtonContainer

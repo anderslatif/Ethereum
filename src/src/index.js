@@ -10,8 +10,8 @@ import getWeb3 from './util/web3/getWeb3'
 import App from './App'
 import Home from './components/home/Home'
 import Dashboard from './components/dashboard/Dashboard'
-import SignUp from './user/layouts/signup/SignUp'
-import Profile from './user/layouts/profile/Profile'
+import SignUp from './components/signup/SignUp'
+import Profile from './components/profile/Profile'
 
 // Redux Store
 import store from './store'
