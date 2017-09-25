@@ -24,7 +24,7 @@ class App extends Component {
         </li>
         <LogoutButtonContainer />
       </span>
-    )
+    );
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
       <span>
@@ -33,7 +33,7 @@ class App extends Component {
         </li>
         <LoginButtonContainer />
       </span>
-    )
+    );
 
     return (
       <div className="App">

@@ -3,22 +3,22 @@ import SignUpForm from './SignUpForm'
 import { signUpUser } from './SignUpFormActions'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
-}
+    return {}
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onSignUpFormSubmit: (name) => {
-      event.preventDefault();
+    return {
+        onSignUpFormSubmit: (name) => {
+            //event.preventDefault();
 
-      dispatch(signUpUser(name))
-    }
-  }
-}
+            dispatch(signUpUser(name))
+        }
+    };
+};
 
 const SignUpFormContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUpForm)
+    mapStateToProps,
+    mapDispatchToProps
+)(SignUpForm);
 
 export default SignUpFormContainer
