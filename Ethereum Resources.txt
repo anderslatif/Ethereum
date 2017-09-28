@@ -11,6 +11,10 @@ https://github.com/paritytech/parity/wiki/Tutorial-Part-I
 
 
 
+Truffle Console playing around
+
+OpenElection.deployed().then(open => open.balance.call().then(console.log));
+
 
 
 
