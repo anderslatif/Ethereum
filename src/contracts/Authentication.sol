@@ -3,6 +3,7 @@ pragma solidity ^0.4.2;
 import './util/lifecycle/Killable.sol';
 
 contract Authentication is Killable {
+
   struct User {
     bytes32 name;
   }

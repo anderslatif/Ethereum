@@ -3,6 +3,7 @@ pragma solidity ^0.4.2;
 contract OpenElection {
 
     uint public votingDeadline;
+    string public proposalDescription;
 
     event Voted(uint proposalID, bool position, address voter);
 
@@ -36,7 +37,7 @@ contract OpenElection {
     // @notice creating the Ballot based on votes
     // @param list of proposals that voters can choose between
     // @param the deadline when the vote ends
-   /* function OpenElection(bytes32[] proposalDescriptions, uint _votingDeadlineInMinutes) {
+   /* function OpenElection(string proposalDescription, bytes32[] proposalDescriptions, uint _votingDeadlineInMinutes) {
 
         votingDeadline = now + _votingDeadlineInMinutes * 1 minutes;
 

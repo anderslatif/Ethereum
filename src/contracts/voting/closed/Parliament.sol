@@ -1,11 +1,11 @@
 pragma solidity ^0.4.2;
 
-/*import "../../util/ownership/Ownable";
-import "../../util/lifecycle/Killable";*/
+import "../../util/ownership/Ownable.sol";
+import "../../util/lifecycle/Killable.sol";
 
-contract Parliament /*is Ownable, Killable*/ {
+contract Parliament is Ownable, Killable {
 
-   /* mapping (address => uint) public memberId;
+/*    mapping (address => uint) public memberId;
     Member[] public members;
 
     struct Member {
