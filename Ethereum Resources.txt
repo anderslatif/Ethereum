@@ -16,9 +16,13 @@ Truffle Console playing around
 OpenElection.deployed().then(open => open.balance.call().then(console.log));
 
 
+To study thoroughly:
+https://monax.io/docs/solidity/solidity_1_the_five_types_model/
 
-
-
+Election example
+https://www.ethereum.org/dao
+https://ethereum.gitbooks.io/frontier-guide/content/contract_democracy.html
+http://solidity.readthedocs.io/en/develop/solidity-by-example.html
 
 
 
