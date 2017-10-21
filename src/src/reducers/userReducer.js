@@ -1,23 +1,19 @@
-const initialState = {
-  data: null
-};
+import initialStoreState from '../store/initialStoreState.js'
+import {USER_LOGGED_IN, USER_UPDATED, USER_LOGGED_OUT} from '../constants/constants.js';
 
-const userReducer = (state = initialState, action) => {
-  if (action.type === 'USER_LOGGED_IN' || action.type === 'USER_UPDATED')
-  {
-    return Object.assign({}, state, {
-      data: action.payload
-    })
-  }
+export default function userReducer(state = initialStoreState.user, action) {
+    switch (action.type) {
+        case USER_LOGGED_IN || USER_UPDATED:
+            return {
+                ...state,
+                data: action.payload
+            };
+        case USER_LOGGED_OUT:
+            return {
+                data: null
+            };
+        default:
+            return state;
+    }
+}
 
-  if (action.type === 'USER_LOGGED_OUT')
-  {
-    return Object.assign({}, state, {
-      data: null
-    })
-  }
-
-  return state
-};
-
-export default userReducer

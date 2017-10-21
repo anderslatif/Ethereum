@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
 
+// redux store
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as democracyActions from '../../actions/DemocracyActions.js';
+
+
 class Home extends Component {
-  render() {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
+
+    render() {
     return(
       <main className="container">
         <div className="pure-g">
@@ -21,7 +35,21 @@ class Home extends Component {
         </div>
       </main>
     )
-  }
+    }
+
 }
 
-export default Home
+const mapStateToProps = (state) => ({
+/*    addedMenuItems: state.orders.addedMenuItems.toArray(),
+    total: state.orders.total*/
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions : {
+        democracyActions : bindActionCreators(democracyActions, dispatch)
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// the connect method transforms the current Redux store state and imported actions into the props
+

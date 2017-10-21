@@ -1,6 +1,6 @@
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import {USER_LOGGED_OUT} from "../constants/constants";
 
-export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 function userLoggedOut(user) {
   return {
     type: USER_LOGGED_OUT,
