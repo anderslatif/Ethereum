@@ -1,4 +1,4 @@
-import AuthenticationContract from '../../contracts/Authentication.json'
+import AuthenticationContract from '../../build/contracts/Authentication.json'
 import { loginUser } from './LoginButtonActions'
 import store from '../store'
 
