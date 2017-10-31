@@ -5,36 +5,33 @@ import "../../util/lifecycle/Killable.sol";
 
 contract Parliament is Ownable, Killable {
 
-/*    mapping (address => uint) public memberId;
-    Member[] public members;
+    mapping (address => Member) public members;
 
     struct Member {
-        address member;
         string name;
+        uint tokens;
+        bool exists;
     }
 
-    function Parliament(){
+    function Parliament() {
 
     }
 
-    function addMember(address targetMember, string memberName) onlyOwner {
-        members[members.length] = Member({member: targetMember, membername: memberName}); // this is ot correct
+    function addMember(address targetMember, string memberName, uint tokens) onlyOwner {
+        members[targetMember] = Member({name: memberName, tokens: tokens, exists: true});
+    }
+
+    function getMember(address targetMember) returns (string, uint) {
+        return (members[targetMember].name, members[targetMember].tokens);
     }
 
     function removeMember(address targetMember) onlyOwner {
-        require(members[targetMember] != 0);// this is not correct
+        require(members[targetMember].exists);
 
         delete members[targetMember];
     }
 
-    modifier onlyMembers {
-        require (memberId[msg.sender] != 0);
-        _;
-    }
 
-    function vote() onlyMembers returns(uint voteId) {
-
-    }*/
 
     // there should be a delete function where you can give away your votes (on an issue?) to another voter
     // http://solidity.readthedocs.io/en/develop/solidity-by-example.html

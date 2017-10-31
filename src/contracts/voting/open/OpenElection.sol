@@ -36,9 +36,12 @@ contract OpenElection {
     // @notice creating the Ballot based on votes
     // @param list of proposals that voters can choose between
     // @param the deadline when the vote ends
-    function OpenElection(string _proposalDescription, bytes32[] _proposalDescriptions) {
+/*    function OpenElection(string _proposalDescription, bytes32[] _proposalDescriptions) {
 
         proposalDescription = _proposalDescription;
+
+        //votingDeadline = now + _votingDeadlineInMinutes * 1 minutes;
+
 
         voters[msg.sender].weight = 1;
 
@@ -49,7 +52,7 @@ contract OpenElection {
             }));
         }
 
-    }
+    }*/
 
     function getProposalDescription() constant returns(bytes32 _proposalDescription) {
         return stringToBytes32(proposalDescription);
