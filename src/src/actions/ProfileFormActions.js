@@ -42,7 +42,7 @@ export function updateUser(name) {
 
                             dispatch(userUpdated({"name": name}));
 
-                            return alert('Name updated!')
+                            //return alert('Name updated!')
                         })
                         .catch(function (result) {
                             // If error...

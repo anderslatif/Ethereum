@@ -20,32 +20,32 @@ import store from './store/configureStore'
 const history = syncHistoryWithStore(browserHistory, store);
 
 
-let contract = require("truffle-contract");
-import OpenElection from '../build/contracts/OpenElection.json';
+// let contract = require("truffle-contract");
+// import OpenElection from '../build/contracts/OpenElection.json';
 //import ContractFactory from '../build/contracts/ContractFactory.json';
 // Initialize web3 and set in Redux.
 getWeb3
 .then(results => {
   console.log('Web3 initialized!', results);
 
-    let web3 = store.getState().web3.web3Instance;
+    //let web3 = store.getState().web3.web3Instance;
 
 
-    web3.eth.getCoinbase((error, coinbase) => {
+/*    web3.eth.getCoinbase((error, coinbase) => {
         // Log errors, if any.
         if (error) {
             console.error(error);
         }
 
 
-/*        const contractFactory = contract(ContractFactory);
+/!*        const contractFactory = contract(ContractFactory);
         contractFactory.setProvider(web3.currentProvider);
 
         contractFactory.deployed().then(instance => {
 
             instance.createContract("which do you want to vote for?", ["option 1", "option 2", "option 3"], {from: coinbase}).then(console.log);
             instance.getContractCount.call({from: coinbase}).then(console.log)
-        });*/
+        });*!/
 
 
         const openElection = contract(OpenElection);
@@ -60,7 +60,7 @@ getWeb3
             })
         });
 
-    });
+    });*/
 
 
 

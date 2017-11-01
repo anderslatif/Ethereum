@@ -66,3 +66,32 @@ code {
   height: 16px;
   margin-right: 10px;
 }
+
+
+/* React Pagination */
+
+.react-paginate ul {
+  display: inline-block;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.react-paginate li {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.react-paginate li a {
+  text-decoration: none;
+  outline: 0;
+  border: none;
+  -moz-outline-style: none
+}
+
+.react-paginate ul .selected a {
+  color: red;
+}
+
+

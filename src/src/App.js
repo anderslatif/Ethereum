@@ -11,6 +11,9 @@ import './styles/css/oswald.css'
 import './styles/css/open-sans.css'
 import './styles/css/pure-min.css'
 import './styles/App.css'
+import 'react-toastify/dist/ReactToastify.min.css'
+import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
+
 
 class App extends Component {
   render() {

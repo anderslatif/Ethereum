@@ -16,7 +16,7 @@ contract ContractFactory is Ownable {
         //addressArray.push(electContract);
         contracts[msg.sender].push(electContract);
         users.push(msg.sender);
-        ContractCreatedEvent(electContract); // fires an event
+        LogContractCreated(electContract); // fires an event
         return electContract;
     }
 
