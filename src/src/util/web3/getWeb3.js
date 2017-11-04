@@ -1,7 +1,7 @@
 import store from '../../store/configureStore';
 import Web3 from 'web3';
 
-export const WEB3_INITIALIZED = 'WEB3_INITIALIZED';
+import {WEB3_INITIALIZED, INIT_CONTRACT_FACTORY_CONTRACT, INIT_OPEN_ELECTION_CONTRACT} from "../../constants/constants";
 
 function web3Initialized(results) {
     return {
@@ -35,6 +35,7 @@ let getWeb3 = new Promise(function (resolve, reject) {
             let provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
             web3 = new Web3(provider);
+            initiateContracts(web3);
 
             results = {
                 web3Instance: web3
@@ -48,3 +49,45 @@ let getWeb3 = new Promise(function (resolve, reject) {
 });
 
 export default getWeb3
+
+import ContractFactoryContract from '../../../build/contracts/ContractFactory.json';
+import OpenElectionContract from '../../../build/contracts/OpenElection.json';
+import contract from 'truffle-contract';
+
+function initiateContracts(web3) {
+    web3.eth.getCoinbase((error, coinbase) => {
+        if (error) {
+            console.error(error);
+        }
+
+        const contractFactory = contract(ContractFactoryContract);
+        contractFactory.setProvider(web3.currentProvider);
+
+        contractFactory.deployed().then(instance => {
+            store.dispatch(initContractFactoryContract(instance));
+        });
+
+
+        const openElection = contract(OpenElectionContract);
+        openElection.setProvider(web3.currentProvider);
+
+        openElection.deployed().then(instance => {
+            store.dispatch(initOpenElectionContract(instance));
+        });
+
+    });
+}
+
+export function initContractFactoryContract(contract) {
+    return {
+        type: INIT_CONTRACT_FACTORY_CONTRACT,
+        payload: contract
+    }
+}
+
+export function initOpenElectionContract(contract) {
+    return {
+        type: INIT_OPEN_ELECTION_CONTRACT,
+        payload: contract
+    }
+}

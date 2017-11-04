@@ -11,6 +11,6 @@ module.exports = function(deployer) {
     deployer.deploy(Killable);
     deployer.link(Killable, Authentication);
     deployer.deploy(Authentication);
-    deployer.deploy(OpenElection, "which do you want to vote for?", ["option 1", "option 2", "option 3"]);
+    // deployer.deploy(OpenElection, "which do you want to vote for?", ["option 1", "option 2", "option 3"]);
     deployer.deploy(ContractFactory);
 };

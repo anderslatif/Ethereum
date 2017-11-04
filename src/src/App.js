@@ -12,6 +12,8 @@ import './styles/css/open-sans.css'
 import './styles/css/pure-min.css'
 import './styles/App.css'
 import 'react-toastify/dist/ReactToastify.min.css'
+import 'react-datepicker/dist/datepicker.css';
+import 'react-bootstrap-toggle/dist/bootstrap2-toggle.css';
 import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
 
 

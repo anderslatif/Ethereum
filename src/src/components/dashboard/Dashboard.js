@@ -24,16 +24,23 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.props.actions.democracyActions.getOpenElections();
+        console.log("Checking contract factory", this.props.ContractFactory)
     }
 
     changeViewMode = () => {
         this.setState({isCreatingNewElection: !this.state.isCreatingNewElection})
     };
 
+    createNewElection = (propositionDescription, propositions) => {
+        this.props.actions.democracyActions.createOpenElectionContract(propositionDescription, propositions);
+    };
+
 
     render() {
 
-        const modeView = this.state.isCreatingNewElection ? <CreateNewElection/> : <MyElections/>;
+        //const modeView = this.state.isCreatingNewElection ? <CreateNewElection/> : <MyElections/>;
+        const modeView = this.state.isCreatingNewElection ? <MyElections/> :
+            <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
 
         return (
             <main className="container">
@@ -57,7 +64,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({
     propositions: state.democracy.propositions.toArray(),
-    counts: state.democracy.counts.toArray()
+    counts: state.democracy.counts.toArray(),
+    ContractFactory: state.web3.ContractFactory
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -20,50 +20,10 @@ import store from './store/configureStore'
 const history = syncHistoryWithStore(browserHistory, store);
 
 
-// let contract = require("truffle-contract");
-// import OpenElection from '../build/contracts/OpenElection.json';
-//import ContractFactory from '../build/contracts/ContractFactory.json';
 // Initialize web3 and set in Redux.
 getWeb3
 .then(results => {
-  console.log('Web3 initialized!', results);
-
-    //let web3 = store.getState().web3.web3Instance;
-
-
-/*    web3.eth.getCoinbase((error, coinbase) => {
-        // Log errors, if any.
-        if (error) {
-            console.error(error);
-        }
-
-
-/!*        const contractFactory = contract(ContractFactory);
-        contractFactory.setProvider(web3.currentProvider);
-
-        contractFactory.deployed().then(instance => {
-
-            instance.createContract("which do you want to vote for?", ["option 1", "option 2", "option 3"], {from: coinbase}).then(console.log);
-            instance.getContractCount.call({from: coinbase}).then(console.log)
-        });*!/
-
-
-        const openElection = contract(OpenElection);
-        openElection.setProvider(web3.currentProvider);
-
-        openElection.deployed().then(instance => {
-
-            //instance.getProposalDescription.call({from: coinbase}).then(console.log)
-            instance.vote(0, {from: coinbase}).then(voted => {
-                console.log("voted? ", voted);
-                    instance.getResults.call({from: coinbase}).then(response => console.log(response[1][0].toNumber()))
-            })
-        });
-
-    });*/
-
-
-
+    console.log('Web3 initialized!', results);
 })
 .catch(() => {
     console.log('Error in web3 initialization.');

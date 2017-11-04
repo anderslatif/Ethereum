@@ -10,10 +10,8 @@ contract ContractFactory is Ownable {
 
     event LogContractCreated (address userAddress);
 
-    function createContract() returns(OpenElection) {
-        OpenElection electContract = new OpenElection();
-        //var addressArray = contracts[msg.sender];
-        //addressArray.push(electContract);
+    function createContract(string _proposalDescription, bytes32[] _proposalDescriptions) returns(OpenElection) {
+        OpenElection electContract = new OpenElection(_proposalDescription, _proposalDescriptions);
         contracts[msg.sender].push(electContract);
         users.push(msg.sender);
         LogContractCreated(electContract); // fires an event
