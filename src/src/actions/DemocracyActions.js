@@ -1,12 +1,12 @@
 import OpenElectionContract from '../../build/contracts/OpenElection.json';
-import {CREATE_NEW_OPEN_ELECTION, ELECTION_RESULTS_RETRIEVED, GET_OPEN_ELECTIONS} from "../constants/constants";
+import {ADD_MY_CONTRACTS, CREATE_NEW_OPEN_ELECTION, ELECTION_RESULTS_RETRIEVED, GET_OPEN_ELECTIONS} from "../constants/constants";
 
 import store from '../store/configureStore';
 
 const contract = require('truffle-contract');
 
 
-export async function createOpenElectionContract(persistedContractAddress) {
+export function createOpenElectionContract(persistedContractAddress) {
 
     return {
         type: CREATE_NEW_OPEN_ELECTION,
@@ -14,6 +14,13 @@ export async function createOpenElectionContract(persistedContractAddress) {
     }
 }
 
+
+export function addMyContracts(addressArray) {
+    return {
+        type: ADD_MY_CONTRACTS,
+        payload: addressArray
+    }
+}
 
 
 

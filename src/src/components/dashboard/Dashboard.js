@@ -9,7 +9,6 @@ import MyElections from './MyElections';
 import CreateNewElection from './CreateNewElection.js';
 import ViewModeButtonGroup from './ViewModeButtonGroup.js';
 
-import OpenElectionContract from "../../../build/contracts/OpenElection.json";
 
 class Dashboard extends Component {
     constructor(props, {authData}) {
@@ -26,12 +25,7 @@ class Dashboard extends Component {
     componentDidMount() {
 
         this.props.OpenElectionContractFactory.getMyContracts.call({from: this.props.coinbase}).then(response => {
-            console.log("result from factory ", response);
-
-            let openElect = this.props.web3Instance.eth.contract(OpenElectionContract.abi);
-            let firstContract = openElect.at(response[0]);
-            console.log("33 ", firstContract)
-            // this.props.actions.democracyActions.getOpenElections();
+            this.props.actions.democracyActions.addMyContracts(response);
         });
 
     }
@@ -52,9 +46,10 @@ class Dashboard extends Component {
 
     render() {
 
-        //const modeView = this.state.isCreatingNewElection ? <CreateNewElection/> : <MyElections/>;
-        const modeView = this.state.isCreatingNewElection ? <MyElections/> :
-            <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
+        const modeView = this.state.isCreatingNewElection ? <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>
+                                                          : <MyElections myContracts={this.props.myContracts}/>;
+        //const modeView = this.state.isCreatingNewElection ? <MyElections/> :
+        //    <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
 
         return (
             <main className="container">
@@ -82,7 +77,8 @@ const mapStateToProps = (state) => ({
     coinbase: state.web3.coinbase,
     web3Instance: state.web3.web3Instance,
     OpenElectionContractFactory: state.web3.OpenElectionContractFactory,
-    OpenElection: state.web3.OpenElection
+    OpenElection: state.web3.OpenElection,
+    myContracts: state.democracy.myContracts.toArray()
 });
 
 const mapDispatchToProps = (dispatch) => ({

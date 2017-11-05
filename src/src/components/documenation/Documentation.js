@@ -5,22 +5,22 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
-import OpenElectionsTable from './OpenElectionsTable.js';
 
-class Home extends Component {
+class Documentation extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
-    }
+        this.state = {
 
+        }
+    }
 
     render() {
         return (
             <main className="container">
                 <div className="pure-g">
                     <div className="pure-u-1-1">
-                        <OpenElectionsTable/>
+                        <p>documenation page</p>
                     </div>
                 </div>
             </main>
@@ -30,8 +30,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    propositions: state.democracy.propositions.toArray(),
-    counts: state.democracy.counts.toArray(),
+    web3Instance: state.web3.web3Instance,
+    coinbase: state.web3.coinbase
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -40,6 +40,6 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Documentation);
 // the connect method transforms the current Redux store state and imported actions into the props
 
