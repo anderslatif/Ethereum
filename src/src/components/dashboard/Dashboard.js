@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
-
 import MyElections from './MyElections';
 import CreateNewElection from './CreateNewElection.js';
 import ViewModeButtonGroup from './ViewModeButtonGroup.js';
+
+import OpenElectionContract from "../../../build/contracts/OpenElection.json";
 
 class Dashboard extends Component {
     constructor(props, {authData}) {
@@ -23,8 +24,16 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.props.actions.democracyActions.getOpenElections();
-        console.log("Checking contract factory", this.props.ContractFactory)
+
+        this.props.OpenElectionContractFactory.getMyContracts.call({from: this.props.coinbase}).then(response => {
+            console.log("result from factory ", response);
+
+            let openElect = this.props.web3Instance.eth.contract(OpenElectionContract.abi);
+            let firstContract = openElect.at(response[0]);
+            console.log("33 ", firstContract)
+            // this.props.actions.democracyActions.getOpenElections();
+        });
+
     }
 
     changeViewMode = () => {
@@ -32,7 +41,12 @@ class Dashboard extends Component {
     };
 
     createNewElection = (propositionDescription, propositions) => {
-        this.props.actions.democracyActions.createOpenElectionContract(propositionDescription, propositions);
+
+        this.props.OpenElectionContractFactory.createContract(propositionDescription, propositions, {from: this.props.coinbase, gas: 3000000}).then(response => {
+            console.log("address ", response);
+            this.props.actions.democracyActions.createOpenElectionContract(response);
+            this.changeViewMode();
+        });
     };
 
 
@@ -65,7 +79,10 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     propositions: state.democracy.propositions.toArray(),
     counts: state.democracy.counts.toArray(),
-    ContractFactory: state.web3.ContractFactory
+    coinbase: state.web3.coinbase,
+    web3Instance: state.web3.web3Instance,
+    OpenElectionContractFactory: state.web3.OpenElectionContractFactory,
+    OpenElection: state.web3.OpenElection
 });
 
 const mapDispatchToProps = (dispatch) => ({

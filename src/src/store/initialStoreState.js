@@ -4,8 +4,9 @@ import Immutable from 'immutable';
 const initialStoreState = {
     web3: {
         web3Instance: null,
-        ContractFactory: null,
-        OpenDemocracy: null
+        coinbase: null,
+        OpenElectionContractFactory: null,
+        OpenElection: null
     },
     user: {
         data: null
@@ -13,6 +14,7 @@ const initialStoreState = {
     democracy: {
         propositions: new Immutable.List([]),
         counts: new Immutable.List([]),
+        myContracts: new Immutable.List([])
     }
 };
 

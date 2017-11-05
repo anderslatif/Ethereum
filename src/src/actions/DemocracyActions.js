@@ -5,50 +5,16 @@ import store from '../store/configureStore';
 
 const contract = require('truffle-contract');
 
-//import OpenElectionContract from '../../build/contracts/OpenElection.json';
-import ContractFactoryContract from '../../build/contracts/ContractFactory.json';
 
+export async function createOpenElectionContract(persistedContractAddress) {
 
-export async function createOpenElectionContract(propositionDescription, propositions) {
-
-    let persistedContractAddress = await createOpenElectionContractAbi(propositionDescription, propositions);
     return {
         type: CREATE_NEW_OPEN_ELECTION,
         payload: persistedContractAddress
     }
 }
 
-export function createOpenElectionContractAbi(propositionDescription, propositions) {
-    let web3 = store.getState().web3.web3Instance;
 
-    let persistedContractAddress = "";
-    if (typeof web3 !== 'undefined') {
-
-        console.log("election web3 ", web3);
-
-        web3.eth.getCoinbase((error, coinbase) => {
-            // Log errors, if any.
-            if (error) {
-                console.error(error);
-            }
-
-            const contractFactory = contract(ContractFactoryContract);
-            contractFactory.setProvider(web3.currentProvider);
-
-            contractFactory.deployed().then(instance => {
-
-                instance.createContract.call(propositionDescription, propositions, {from: coinbase}).then(response => {
-                    persistedContractAddress = response;
-                })
-            })
-
-        });
-
-    } else {
-        console.error('Web3 is not initialized.');
-    }
-    return persistedContractAddress;
-}
 
 
 export function getElectionResults() {
@@ -115,38 +81,6 @@ export function getElectionResults() {
 
 
 export function getOpenElections() {
-
-    let web3 = store.getState().web3.web3Instance;
-
-    if (typeof web3 !== 'undefined') {
-
-        web3.eth.getCoinbase((error, coinbase) => {
-            if (error) {
-                console.error(error);
-            }
-
-            const contractFactory = contract(ContractFactoryContract);
-            contractFactory.setProvider(web3.currentProvider);
-
-            contractFactory.deployed().then(instance => {
-
-                instance.getAllUsers.call({from: coinbase}).then(response => {
-                    console.log("all users: ", response);
-                });
-
-                instance.getMyContracts.call({from: coinbase}).then(response => {
-                    console.log("gotten contracts: ", response);
-                });
-            })
-
-        });
-
-    } else {
-        console.error('Web3 is not initialized.');
-    }
-
-
-
 
     return {
         type: GET_OPEN_ELECTIONS,

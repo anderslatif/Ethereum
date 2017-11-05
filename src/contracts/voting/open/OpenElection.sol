@@ -1,5 +1,7 @@
 pragma solidity ^0.4.2;
 
+import "../../util/ownership/Ownable.sol";
+
 contract OpenElection {
 
     address public owner;
@@ -28,9 +30,6 @@ contract OpenElection {
         bytes32 proposition;
         uint voteCount;
     }
-
-
-
 
 
     // @notice creating the Ballot based on votes

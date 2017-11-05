@@ -35,8 +35,6 @@ export default class CreateNewElection extends Component {
         arr.push(this.state.propositionOne);
         this.props.createNewElection(this.state.propositionDescription, /*this.state.propositions*/ arr);
         toast.success("submitted");
-        this.props.changeViewMode();
-
     };
 
 

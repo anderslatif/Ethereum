@@ -1,7 +1,7 @@
-import store from '../../store/configureStore';
+import store from '../store/configureStore';
 import Web3 from 'web3';
 
-import {WEB3_INITIALIZED, INIT_CONTRACT_FACTORY_CONTRACT, INIT_OPEN_ELECTION_CONTRACT} from "../../constants/constants";
+import {WEB3_INITIALIZED, INIT_COINBASE, INIT_OPEN_ELECTION_CONTRACT_FACTORY, INIT_OPEN_ELECTION_CONTRACT} from "../constants/constants";
 
 function web3Initialized(results) {
     return {
@@ -50,8 +50,8 @@ let getWeb3 = new Promise(function (resolve, reject) {
 
 export default getWeb3
 
-import ContractFactoryContract from '../../../build/contracts/ContractFactory.json';
-import OpenElectionContract from '../../../build/contracts/OpenElection.json';
+import OpenElectionContractFactory from '../../build/contracts/OpenElectionContractFactory.json';
+import OpenElectionContract from '../../build/contracts/OpenElection.json';
 import contract from 'truffle-contract';
 
 function initiateContracts(web3) {
@@ -60,11 +60,14 @@ function initiateContracts(web3) {
             console.error(error);
         }
 
-        const contractFactory = contract(ContractFactoryContract);
-        contractFactory.setProvider(web3.currentProvider);
+        store.dispatch(initCoinbase(coinbase));
 
-        contractFactory.deployed().then(instance => {
-            store.dispatch(initContractFactoryContract(instance));
+
+        const openElectionContractFactory = contract(OpenElectionContractFactory);
+        openElectionContractFactory.setProvider(web3.currentProvider);
+
+        openElectionContractFactory.deployed().then(instance => {
+            store.dispatch(initOpenElectionContractFactory(instance));
         });
 
 
@@ -78,9 +81,16 @@ function initiateContracts(web3) {
     });
 }
 
-export function initContractFactoryContract(contract) {
+export function initCoinbase(coinbase) {
     return {
-        type: INIT_CONTRACT_FACTORY_CONTRACT,
+        type: INIT_COINBASE,
+        payload: coinbase
+    }
+}
+
+export function initOpenElectionContractFactory(contract) {
+    return {
+        type: INIT_OPEN_ELECTION_CONTRACT_FACTORY,
         payload: contract
     }
 }
