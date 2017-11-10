@@ -20,7 +20,7 @@ class Documentation extends Component {
             <main className="container">
                 <div className="pure-g">
                     <div className="pure-u-1-1">
-                        <p>documenation page</p>
+                        <p>Documenation page</p>
                     </div>
                 </div>
             </main>
