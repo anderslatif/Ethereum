@@ -2,7 +2,7 @@ pragma solidity ^0.4.2;
 
 import "../../util/ownership/Ownable.sol";
 
-contract OpenElection {
+contract OpenElections {
 
     address public owner;
 
@@ -35,7 +35,7 @@ contract OpenElection {
     // @notice creating the Ballot based on votes
     // @param list of proposals that voters can choose between
     // @param the deadline when the vote ends
-    function OpenElection(string _proposalDescription, bytes32[] _proposalDescriptions) {
+    function OpenElections(string _proposalDescription, bytes32[] _proposalDescriptions) {
 
         proposalDescription = _proposalDescription;
 
@@ -54,7 +54,8 @@ contract OpenElection {
     }
 
     function getProposalDescription() constant returns(bytes32 _proposalDescription) {
-        return stringToBytes32(proposalDescription);
+        return "test";
+        //        return stringToBytes32(proposalDescription);
     }
 
 
@@ -85,4 +86,29 @@ contract OpenElection {
         return (proposalNames, counts);
     }
 
+}
+
+contract OpenElection is Ownable {
+
+    mapping (address => address[]) contracts;
+    address[] users;
+
+    event LogContractCreated (address userAddress);
+
+    function createContract(string _proposalDescription, bytes32[] _proposalDescriptions) returns(OpenElections) {
+        OpenElections electContract = new OpenElections(_proposalDescription, _proposalDescriptions);
+        contracts[msg.sender].push(electContract);
+        //users.push(msg.sender);
+        LogContractCreated(electContract); // fires an event
+        return electContract;
+    }
+
+    function getMyContracts() returns(address[] contractAddresses) {
+        var addressArray = contracts[msg.sender];
+        return addressArray;
+    }
+
+    function getAllUsers() onlyOwner returns(address[] allUsers) {
+        return users;
+    }
 }

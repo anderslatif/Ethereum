@@ -7,8 +7,9 @@ npm install -g truffle
 npm install -g ethereumjs-testrpc
 
 
-In src folder:
-truffle init webpack
+In src/src folder:
+npm run start
+
 
 Metamask: Bumblefuzzle
 swift eagle travel fox breeze below shield unaware lyrics judge hunt swap

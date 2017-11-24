@@ -24,7 +24,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
 
-        this.props.OpenElectionContractFactory.getMyContracts.call({from: this.props.coinbase}).then(response => {
+        this.props.OpenElection.getMyContracts.call({from: this.props.coinbase}).then(response => {
             this.props.actions.democracyActions.addMyContracts(response);
         });
 
@@ -36,7 +36,7 @@ class Dashboard extends Component {
 
     createNewElection = (propositionDescription, propositions) => {
 
-        this.props.OpenElectionContractFactory.createContract(propositionDescription, propositions, {from: this.props.coinbase, gas: 3000000}).then(response => {
+        this.props.OpenElection.createContract(propositionDescription, propositions, {from: this.props.coinbase, gas: 3000000}).then(response => {
             console.log("address ", response);
             this.props.actions.democracyActions.createOpenElectionContract(response);
             this.changeViewMode();

@@ -1,7 +1,7 @@
 import store from '../store/configureStore';
 import Web3 from 'web3';
 
-import {WEB3_INITIALIZED, INIT_COINBASE, INIT_OPEN_ELECTION_CONTRACT_FACTORY, INIT_OPEN_ELECTION_CONTRACT} from "../constants/constants";
+import {WEB3_INITIALIZED, INIT_COINBASE, INIT_OPEN_ELECTION_CONTRACT} from "../constants/constants";
 
 function web3Initialized(results) {
     return {
@@ -22,6 +22,7 @@ let getWeb3 = new Promise(function (resolve, reject) {
             web3 = new Web3(web3.currentProvider);
 
             results = {
+
                 web3Instance: web3
             };
 
@@ -50,7 +51,6 @@ let getWeb3 = new Promise(function (resolve, reject) {
 
 export default getWeb3
 
-import OpenElectionContractFactory from '../../build/contracts/OpenElectionContractFactory.json';
 import OpenElectionContract from '../../build/contracts/OpenElection.json';
 import contract from 'truffle-contract';
 
@@ -61,14 +61,6 @@ function initiateContracts(web3) {
         }
 
         store.dispatch(initCoinbase(coinbase));
-
-
-        const openElectionContractFactory = contract(OpenElectionContractFactory);
-        openElectionContractFactory.setProvider(web3.currentProvider);
-
-        openElectionContractFactory.deployed().then(instance => {
-            store.dispatch(initOpenElectionContractFactory(instance));
-        });
 
 
         const openElection = contract(OpenElectionContract);
@@ -85,13 +77,6 @@ export function initCoinbase(coinbase) {
     return {
         type: INIT_COINBASE,
         payload: coinbase
-    }
-}
-
-export function initOpenElectionContractFactory(contract) {
-    return {
-        type: INIT_OPEN_ELECTION_CONTRACT_FACTORY,
-        payload: contract
     }
 }
 

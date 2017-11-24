@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
-import OpenElectionContract from "../../../build/contracts/OpenElection.json";
+import OpenElectionContract from "../../../build/contracts/OpenElections.json";
 import getWeb3 from '../../actions/getWeb3'
 
 
@@ -24,9 +24,12 @@ class Elections extends Component {
             this.findContract();
         }).then(() => {
             console.log(this.state.contract);
-            this.state.contract.getResults.call({from: this.props.web3Instance.eth.coinbase}).then(response => {
+            this.state.contract.getProposalDescription.call({from: this.props.web3Instance.eth.coinbase}).then(response => {
                 console.log("Election result ", response);
-            });
+            })
+/*            this.state.contract.getProposalDescription.call({from: this.props.web3Instance.eth.coinbase}).then(response => {
+                console.log("Election result ", response);
+            });*/
         })
     }
 
@@ -45,6 +48,7 @@ class Elections extends Component {
             <main className="container">
                 <div className="pure-g">
                     <div className="pure-u-1-1">
+                        <br/>
                         <p>elections page</p>
                     </div>
                 </div>
