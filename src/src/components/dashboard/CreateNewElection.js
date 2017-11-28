@@ -34,7 +34,7 @@ export default class CreateNewElection extends Component {
         let arr = [];
         arr.push(this.state.propositionOne);
         this.props.createNewElection(this.state.propositionDescription, /*this.state.propositions*/ arr);
-        toast.success("submitted");
+        toast.info('Please wait while the newly created contract has been mined.. Refresh the page to see if the contract appears in the table.')
     };
 
 
@@ -66,7 +66,7 @@ export default class CreateNewElection extends Component {
                     <button type="submit" className="pure-button pure-button-primary">Create a new election</button>
                 </fieldset>
 
-                <ToastContainer closeOnClick hideProgressBar={true}/>
+                <ToastContainer closeOnClick autoClose={false} hideProgressBar={true} />
             </form>
         )
     }

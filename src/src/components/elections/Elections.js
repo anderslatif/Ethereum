@@ -24,9 +24,13 @@ class Elections extends Component {
             this.findContract();
         }).then(() => {
             console.log(this.state.contract);
-            this.state.contract.getProposalDescription.call({from: this.props.web3Instance.eth.coinbase}).then(response => {
+/*            this.state.contract.getProposalDescription.sendTransaction({from: this.props.web3Instance.eth.coinbase}).then(response => {
                 console.log("Election result ", response);
-            })
+            })*/
+            this.state.contract.getProposalDescription.sendTransaction({from: this.props.web3Instance.eth.coinbase}, function(err, txHash) {
+                console.log(err);
+                console.log(txHash);
+            } );
 /*            this.state.contract.getProposalDescription.call({from: this.props.web3Instance.eth.coinbase}).then(response => {
                 console.log("Election result ", response);
             });*/

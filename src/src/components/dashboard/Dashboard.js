@@ -9,6 +9,8 @@ import MyElections from './MyElections';
 import CreateNewElection from './CreateNewElection.js';
 import ViewModeButtonGroup from './ViewModeButtonGroup.js';
 
+import { ToastContainer } from 'react-toastify';
+
 
 class Dashboard extends Component {
     constructor(props, {authData}) {
@@ -65,6 +67,8 @@ class Dashboard extends Component {
                                          changeViewMode={this.changeViewMode} />
                 </div>
                 {modeView}
+
+                <ToastContainer closeOnClick autoClose={false} hideProgressBar={true}/>
             </main>
         )
     }
