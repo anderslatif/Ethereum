@@ -5,6 +5,7 @@ export default function web3Reducer(state = initialStoreState.web3, action) {
     switch (action.type) {
         case WEB3_INITIALIZED:
             return {
+                ...state,
                 web3Instance: action.payload.web3Instance
             };
         case INIT_COINBASE:

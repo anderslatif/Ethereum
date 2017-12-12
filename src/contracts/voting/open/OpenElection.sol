@@ -93,7 +93,7 @@ contract OpenElection is Ownable {
     mapping (address => address[]) contracts;
     address[] users;
 
-    event LogContractCreated (address userAddress);
+    event LogContractCreated (address contractAddress);
 
     function createContract(string _proposalDescription, bytes32[] _proposalDescriptions) returns(OpenElections) {
         OpenElections electContract = new OpenElections(_proposalDescription, _proposalDescriptions);
