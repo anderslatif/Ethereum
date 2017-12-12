@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
 import OpenElectionContract from "../../../build/contracts/OpenElections.json";
-import getWeb3 from '../../actions/getWeb3'
+import getWeb3 from '../../actions/Web3Actions'
 
 
 class Elections extends Component {
