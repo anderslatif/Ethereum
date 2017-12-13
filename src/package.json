@@ -31,7 +31,6 @@
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.2",
     "jest": "18.1.0",
-    "json-loader": "0.5.4",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
@@ -48,9 +47,11 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "base-64": "^0.1.0",
     "gatsby": "^1.9.130",
     "immutable": "^3.8.2",
     "moment": "^2.19.1",
+    "rc-tabs": "^9.1.10",
     "react": "^15.4.2",
     "react-bootstrap-table": "^4.1.1",
     "react-bootstrap-toggle": "^2.1.1",

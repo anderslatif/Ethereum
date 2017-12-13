@@ -5,276 +5,51 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
+import Tabs, {TabPane} from 'rc-tabs';
+import TabContent from 'rc-tabs/lib/TabContent';
+import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
+import 'rc-tabs/assets/index.css';
+
+import Authentication from "../../../docs/Authentication.md";
+import Killable from "../../../docs/Killable.md";
+import Migrations from "../../../docs/Migrations.md";
+import OpenElection from "../../../docs/OpenElection.md";
+import Ownable from "../../../docs/Ownable.md";
+import Parliament from "../../../docs/Parliament.md";
+
+import base64 from 'base-64';
 import ReactMarkdown from 'react-markdown';
 
 class Documentation extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
 
     render() {
-
-        const mdFile = "\n" +
-            "\n" +
-            "# OpenElections\n" +
-            "\n" +
-            "### OpenElections\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "## Functions\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "### Constant functions\n" +
-            "\n" +
-            "#### getProposalDescription\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|_proposalDescription|bytes32|||\n" +
-            "\n" +
-            "\n" +
-            "#### getResults\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|param0|bytes32|||\n" +
-            "|1|param1|uint|||\n" +
-            "\n" +
-            "\n" +
-            "#### numProposals\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|return0|uint||numProposals|\n" +
-            "\n" +
-            "\n" +
-            "#### owner\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|return0|address||owner|\n" +
-            "\n" +
-            "\n" +
-            "#### proposalDescription\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|return0|string||proposalDescription|\n" +
-            "\n" +
-            "\n" +
-            "#### proposals\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|index|uint|||\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|proposition|bytes32|||\n" +
-            "|1|voteCount|uint|||\n" +
-            "\n" +
-            "\n" +
-            "#### stringToBytes32\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|source|string|||\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|result|bytes32|||\n" +
-            "\n" +
-            "\n" +
-            "#### voters\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|return0|[object Object]||voters|\n" +
-            "\n" +
-            "\n" +
-            "#### votingDeadline\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "empty list\n" +
-            "\n" +
-            "\n" +
-            "##### Returns\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|return0|uint||votingDeadline|\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "### State changing functions\n" +
-            "\n" +
-            "#### vote\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Inputs\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|proposal|uint8|||\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "### Events\n" +
-            "\n" +
-            "#### Voted\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Params\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|proposalID|uint|||\n" +
-            "|1|position|bool|||\n" +
-            "|2|voter|address|||\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "### Enums\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "### Structs\n" +
-            "\n" +
-            "#### Voter\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Params\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|weight|uint|||\n" +
-            "|1|voted|bool|||\n" +
-            "|2|votes|uint8|||\n" +
-            "|3|delegate|address|||\n" +
-            "\n" +
-            "\n" +
-            "#### Proposal\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "##### Params\n" +
-            "\n" +
-            "|#  |Param|Type|TypeHint|Description|\n" +
-            "|---|-----|----|--------|-----------|\n" +
-            "|0|proposition|bytes32|||\n" +
-            "|1|voteCount|uint|||\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "\n";
 
         return (
             <main className="container">
                 <div className="pure-g">
                     <div className="pure-u-1-1">
-                        <ReactMarkdown source={mdFile} />
 
+                        <Tabs
+                            defaultActiveKey="2"
+                            renderTabBar={() => <ScrollableInkTabBar/>}
+                            renderTabContent={() => <TabContent/>}
+                        >
+                            <TabPane tab='Authentication' key="1"><ReactMarkdown
+                                source={base64.decode(Authentication.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+                            <TabPane tab='Killable' key="2"><ReactMarkdown
+                                source={base64.decode(Killable.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+                            <TabPane tab='Migrations' key="3"><ReactMarkdown
+                                source={base64.decode(Migrations.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+                            <TabPane tab='OpenElection' key="4"><ReactMarkdown
+                                source={base64.decode(OpenElection.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+                            <TabPane tab='Ownable' key="5"><ReactMarkdown
+                                source={base64.decode(Ownable.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+                            <TabPane tab='Parliament' key="6"><ReactMarkdown
+                                source={base64.decode(Parliament.replace('data:text/x-markdown;base64,', ''))}/></TabPane>
+
+
+                        </Tabs>
                     </div>
                 </div>
             </main>

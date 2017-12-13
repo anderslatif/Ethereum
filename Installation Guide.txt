@@ -15,3 +15,10 @@ Metamask: Bumblefuzzle
 swift eagle travel fox breeze below shield unaware lyrics judge hunt swap
 
 
+todo
+rename contractfactory to that
+improve closed election
+improve form for closed election, and toggle
+show users results
+create front page perhaps??
+write documentary

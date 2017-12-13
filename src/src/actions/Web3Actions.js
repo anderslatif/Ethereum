@@ -36,7 +36,6 @@ let getWeb3 = new Promise(function (resolve, reject) {
             let provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
             web3 = new Web3(provider);
-            initiateContracts(web3);
 
             results = {
                 web3Instance: web3
@@ -46,6 +45,7 @@ let getWeb3 = new Promise(function (resolve, reject) {
 
             resolve(store.dispatch(web3Initialized(results)));
         }
+        initiateContracts(web3);
     })
 });
 

@@ -15,6 +15,10 @@ const initialStoreState = {
         propositions: new Immutable.List([]),
         counts: new Immutable.List([]),
         myContracts: new Immutable.List([])
+    },
+    documentation: {
+        mdFileStrings: new Immutable.List([]),
+        docTitles: new Immutable.List([])
     }
 };
 
