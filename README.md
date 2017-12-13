@@ -1,6 +1,4 @@
-# React, Redux and Authentication Truffle Box
-
-In addition to Webpack and React, this box adds: react-router, redux and redux-auth-wrapper for authentication powered by a smart contract. Great for building your own auth system.
+# Democracy Manifest
 
 ## Installation
 
@@ -40,16 +38,3 @@ In addition to Webpack and React, this box adds: react-router, redux and redux-a
     npm run build
     ```
 
-## FAQ
-
-* __Why is there both a truffle.js file and a truffle-config.js file?__
-
-    Truffle requires the truffle.js file be named truffle-config on Windows machines. Feel free to delete the file that doesn't correspond to your platform.
-
-* __Where is my production build?__
-
-    The production build will be in the build_webpack folder. This is because Truffle outputs contract compilations to the build folder.
-
-* __Where can I find more documentation?__
-
-    All truffle boxes are a marriage of [Truffle](http://truffleframework.com/) and a React setup created with [create-react-app](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md). Either one would be a great place to start!
