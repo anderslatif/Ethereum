@@ -4,8 +4,7 @@ import "../../util/ownership/Ownable.sol";
 import "../../util/lifecycle/Killable.sol";
 
 /*
- * Parliament
- * This contract only allow known members to vote.
+ * This contract only allows known members to vote.
  * Members are added through their public key by the contract owner.
  * The contract owner is initially the original deployer but ownership rights can be handed over by the deployer or new owners.
  * Members can have a varying amount of tokens = votes that they can use for each election.
@@ -78,8 +77,8 @@ contract ContractFactory is Ownable {
 
     event LogContractCreated (address contractAddress);
 
-    function createContract(_votingDeadlineInMinutesForward) returns(Parliament) {
-        Parliament electContract = new Parliament(votingDeadlineInMinutesForward);
+    function createContract(uint _votingDeadlineInMinutesFromNow) returns(Parliament) {
+        Parliament electContract = new Parliament(_votingDeadlineInMinutesFromNow);
         contracts[msg.sender].push(electContract);
         users.push(msg.sender);
         LogContractCreated(electContract); // fires an event

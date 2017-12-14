@@ -13,7 +13,7 @@ import 'rc-tabs/assets/index.css';
 import Authentication from "../../../docs/Authentication.md";
 import Killable from "../../../docs/Killable.md";
 import Migrations from "../../../docs/Migrations.md";
-import OpenElection from "../../../docs/OpenElection.md";
+import OpenElection from "../../../docs/ContractFactory.md";
 import Ownable from "../../../docs/Ownable.md";
 import Parliament from "../../../docs/Parliament.md";
 

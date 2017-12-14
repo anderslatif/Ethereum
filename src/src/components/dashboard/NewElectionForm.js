@@ -71,8 +71,9 @@ export default class NewElectionForm extends Component {
         let propositionElements = [];
         this.state.propositions.forEach((proposition, index) => {
             let placeHolder = "Proposition "+ (index+1);
-            let propositionElement = <input id="name" key={index} type="text" value={proposition} onChange={event => this.updateProposition(event.target.value, index, event)}
-                                                                placeholder={placeHolder}/>;
+            let propositionElement = <input id="name" key={index} type="text" value={proposition}
+                                            onChange={event => this.updateProposition(event.target.value, index, event)}
+                                            style={{width:"600px"}}  placeholder={placeHolder}/>;
             propositionElements.push(propositionElement);
             if (index > 0) {
                 let removeButton = <button key={("removeBtn"+index)} type="submit" className="pure-button" onClick={event => this.onRemoveProposition(index, event)}>Remove</button>;
@@ -111,7 +112,7 @@ export default class NewElectionForm extends Component {
                 <fieldset>
                     <label htmlFor="name">Proposition Description</label>
                     <input id="name" type="text" value={this.state.propositionDescription} onChange={event => this.setState({propositionDescription: event.target.value})}
-                           placeholder="Proposition Description"/>
+                           style={{width:"600px"}}  placeholder="Proposition Description"/>
                     <span className="pure-form-message">Ask a question that describes in clear terms what the election is about.</span>
                     <br/>
 

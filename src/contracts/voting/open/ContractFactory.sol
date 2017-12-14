@@ -109,6 +109,11 @@ contract ContractFactory is Ownable {
         return addressArray;
     }
 
+    function getAContract(address _contractAddress) returns(address[] contractAddresses) {
+        var addressArray = contracts[_contractAddress];
+        return addressArray;
+    }
+
     function getAllUsers() onlyOwner returns(address[] allUsers) {
         return users;
     }
