@@ -1,12 +1,18 @@
 pragma solidity ^0.4.2;
 
 import "../../util/ownership/Ownable.sol";
+import "../../util/lifecycle/Killable.sol";
 
-contract OpenElections {
+/*
+ * Ownable
+ *
+ * Base contract with an owner.
+ * Provides onlyOwner modifier, which prevents function from running if it is called by anyone other than the owner.
+ */
+contract OpenElection is Ownable, Killable {
 
     address public owner;
 
-    uint public votingDeadline;
     string public proposalDescription;
 
     event Voted(uint proposalID, bool position, address voter);
@@ -20,7 +26,6 @@ contract OpenElections {
     struct Voter {
         uint weight;
         bool voted;
-        uint8 votes;
         address delegate;
     }
 
@@ -34,13 +39,9 @@ contract OpenElections {
 
     // @notice creating the Ballot based on votes
     // @param list of proposals that voters can choose between
-    // @param the deadline when the vote ends
-    function OpenElections(string _proposalDescription, bytes32[] _proposalDescriptions) {
+    function OpenElection(string _proposalDescription, bytes32[] _proposalDescriptions) {
 
         proposalDescription = _proposalDescription;
-
-        //votingDeadline = now + _votingDeadlineInMinutes * 1 minutes;
-
 
         voters[msg.sender].weight = 1;
 
@@ -53,8 +54,8 @@ contract OpenElections {
 
     }
 
-    function getProposalDescription() constant returns(bytes32 _proposalDescription) {
-        return "test";
+    function getProposalDescription() constant returns(string _proposalDescription) {
+        return proposalDescription;
         //        return stringToBytes32(proposalDescription);
     }
 
@@ -68,7 +69,7 @@ contract OpenElections {
 
     function vote(uint8 proposal) {
         Voter storage sender = voters[msg.sender];
-        //require(!sender.voted);
+        require(!sender.voted);
 
         sender.voted = true;
         proposals[proposal].voteCount += 1;
@@ -88,17 +89,17 @@ contract OpenElections {
 
 }
 
-contract OpenElection is Ownable {
+contract ContractFactory is Ownable {
 
     mapping (address => address[]) contracts;
     address[] users;
 
     event LogContractCreated (address contractAddress);
 
-    function createContract(string _proposalDescription, bytes32[] _proposalDescriptions) returns(OpenElections) {
-        OpenElections electContract = new OpenElections(_proposalDescription, _proposalDescriptions);
+    function createContract(string _proposalDescription, bytes32[] _proposalDescriptions) returns(OpenElection) {
+        OpenElection electContract = new OpenElection(_proposalDescription, _proposalDescriptions);
         contracts[msg.sender].push(electContract);
-        //users.push(msg.sender);
+        users.push(msg.sender);
         LogContractCreated(electContract); // fires an event
         return electContract;
     }

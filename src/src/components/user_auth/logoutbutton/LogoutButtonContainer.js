@@ -3,8 +3,8 @@ import LogoutButton from './LogoutButton'
 import { logoutUser } from '../../../actions/LogoutButtonActions'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
-}
+    return {};
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -14,11 +14,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(logoutUser())
     }
   }
-}
+};
 
 const LogoutButtonContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LogoutButton)
+    mapStateToProps,
+    mapDispatchToProps
+)(LogoutButton);
 
 export default LogoutButtonContainer

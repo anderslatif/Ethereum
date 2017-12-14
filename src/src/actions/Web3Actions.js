@@ -51,7 +51,7 @@ let getWeb3 = new Promise(function (resolve, reject) {
 
 export default getWeb3
 
-import OpenElectionContract from '../../build/contracts/OpenElection.json';
+import ContractFactory from '../../build/contracts/ContractFactory.json';
 import contract from 'truffle-contract';
 
 function initiateContracts(web3) {
@@ -63,10 +63,10 @@ function initiateContracts(web3) {
         store.dispatch(initCoinbase(coinbase));
 
 
-        const openElection = contract(OpenElectionContract);
-        openElection.setProvider(web3.currentProvider);
+        const contractFactory = contract(ContractFactory);
+        contractFactory.setProvider(web3.currentProvider);
 
-        openElection.deployed().then(instance => {
+        contractFactory.deployed().then(instance => {
             store.dispatch(initOpenElectionContract(instance));
         });
 

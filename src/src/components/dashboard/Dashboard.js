@@ -5,8 +5,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as democracyActions from '../../actions/DemocracyActions.js';
 
-import MyElections from './MyElections';
-import CreateNewElection from './CreateNewElection.js';
+import MyElections from './MyElectionsTable';
+import CreateNewElection from './NewElectionForm.js';
 import ViewModeButtonGroup from './ViewModeButtonGroup.js';
 
 import { ToastContainer } from 'react-toastify';
@@ -17,10 +17,8 @@ class Dashboard extends Component {
         super(props);
         authData = this.props;
         this.state = {
-            propositionDescription: "",
-            propositions: [],
             counts: [],
-            isCreatingNewElection: false
+            isCreatingNewElection: false,
         }
     }
 
@@ -51,7 +49,7 @@ class Dashboard extends Component {
         const modeView = this.state.isCreatingNewElection ? <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>
                                                           : <MyElections myContracts={this.props.myContracts}/>;
         //const modeView = this.state.isCreatingNewElection ? <MyElections/> :
-        //    <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
+        //    <NewElectionForm createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
 
         return (
             <main className="container">

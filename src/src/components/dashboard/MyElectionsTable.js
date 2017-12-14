@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 
-export default class CreateNewElection extends Component {
+export default class MyElectionsTable extends Component {
 
     linkFormatter(cell, row) {
         let address = cell;
