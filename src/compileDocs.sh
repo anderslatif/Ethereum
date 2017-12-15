@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm /docs/*
+
 for f in $(find ./contracts -name '*.sol');
     do
     name=$(basename "$f" ".sol")
