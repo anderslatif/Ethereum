@@ -34,8 +34,7 @@ class Dashboard extends Component {
         this.setState({isCreatingNewElection: !this.state.isCreatingNewElection})
     };
 
-    createNewElection = (propositionDescription, propositions) => {
-
+    createNewOpenElection = (propositionDescription, propositions) => {
         this.props.OpenElection.createContract(propositionDescription, propositions, {from: this.props.coinbase, gas: 3000000}).then(response => {
             console.log("address ", response);
             this.props.actions.democracyActions.createOpenElectionContract(response);
@@ -43,10 +42,17 @@ class Dashboard extends Component {
         });
     };
 
+    createNewClosedElection = (propositionDescription, propositions, addresses, members, tokens) => {
+        this.props.ClosedElection.createContract(addresses.split(','), members.split(','), tokens.split(','), {from: this.props.coinbase, gas: 3000000}).then(response => {
+            console.log("address ", response);
+            this.changeViewMode();
+        });
+    };
 
-    render() {
 
-        const modeView = this.state.isCreatingNewElection ? <CreateNewElection createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>
+        render() {
+
+        const modeView = this.state.isCreatingNewElection ? <CreateNewElection createNewOpenElection={this.createNewOpenElection} createNewClosedElection={this.createNewClosedElection} changeViewMode={this.changeViewMode}/>
                                                           : <MyElections myContracts={this.props.myContracts}/>;
         //const modeView = this.state.isCreatingNewElection ? <MyElections/> :
         //    <NewElectionForm createNewElection={this.createNewElection} changeViewMode={this.changeViewMode}/>;
@@ -80,6 +86,7 @@ const mapStateToProps = (state) => ({
     web3Instance: state.web3.web3Instance,
     OpenElectionContractFactory: state.web3.OpenElectionContractFactory,
     OpenElection: state.web3.OpenElection,
+    ClosedElection: state.web3.ClosedElection,
     myContracts: state.democracy.myContracts.toArray()
 });
 

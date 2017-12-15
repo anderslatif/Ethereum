@@ -6,7 +6,8 @@ const initialStoreState = {
         web3Instance: null,
         coinbase: null,
         OpenElectionContractFactory: null,
-        OpenElection: null
+        OpenElection: null,
+        ClosedElection: null
     },
     user: {
         data: null

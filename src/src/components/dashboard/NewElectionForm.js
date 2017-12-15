@@ -35,7 +35,11 @@ export default class NewElectionForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.createNewElection(this.state.propositionDescription, this.state.propositions);
+        if (this.state.isOpenElection) {
+            this.props.createNewOpenElection(this.state.propositionDescription, this.state.propositions);
+        } else {
+            this.props.createNewClosedElection(this.state.propositionDescription, this.state.propositions, this.state.keys, this.state.names, this.state.tokens);
+        }
         toast.info('Please wait while the newly created contract has been mined.. Refresh the page to see if the contract appears in the table.')
     };
 

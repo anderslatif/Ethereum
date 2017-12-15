@@ -12,5 +12,4 @@ module.exports = function(deployer) {
     deployer.link(Killable, Authentication);
     deployer.deploy(Authentication);
     deployer.deploy(OpenElection);
-
 };

@@ -73,14 +73,18 @@ export default class OpenElectionsTable extends Component {
             contractRows: contractRows
         });}
 
-
+    linkFormatter(cell, row) {
+        let address = cell;
+        let url = "elections/" + address;
+        return <a href={url}>{address}</a>
+    }
 
     render() {
 
         return (
             <div>
                 <BootstrapTable data={this.state.contractRows} striped={true} hover={true}>
-                    <TableHeaderColumn dataField="contractAddress" isKey={true} dataAlign="center" dataSort={true}>Contract Address</TableHeaderColumn>
+                    <TableHeaderColumn dataField="contractAddress" isKey={true} dataAlign="center" dataSort={true} dataFormat={this.linkFormatter}>Contract Address</TableHeaderColumn>
                     <TableHeaderColumn dataField="proposalDescription" dataSort={true}>Question</TableHeaderColumn>
                     <TableHeaderColumn dataField="votes">Amount of votes</TableHeaderColumn>
                 </BootstrapTable>
