@@ -26,6 +26,17 @@ const history = syncHistoryWithStore(browserHistory, store);
 getWeb3
 .then(results => {
     console.log('Web3 initialized!', results);
+
+/*    let event = contractFactory.LogContractCreated({_from:web3.eth.coinbase},{fromBlock: 0, toBlock: 'latest'});
+
+    event.watch(function(error, result){
+        if (!error)
+        console.log(result);
+        browserHistory.push("dashboard");
+    });*/
+
+    //event.stopWatching();
+
 })
 .catch(() => {
     console.log('Error in web3 initialization.');
