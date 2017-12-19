@@ -65,9 +65,6 @@ contract Parliament is Ownable, Killable {
         owner = _newOwner;
     }
 
-    // there should be a delete function where you can give away your votes (on an issue?) to another voter
-    // http://solidity.readthedocs.io/en/develop/solidity-by-example.html
-
 }
 
 contract ContractFactory is Ownable {
